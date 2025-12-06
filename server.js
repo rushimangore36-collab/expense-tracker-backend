@@ -12,8 +12,9 @@ app.use(express.json());
 const withdrawRouter = require("./Routes/withdrawRouter");
 const balanceRouter = require("./Routes/balanceRouter");
 const authRouter = require("./Routes/authRouter");
+const authMiddleware = require("./middlewares/authMiddleware");
 
-app.use("/home/api/withdraws", withdrawRouter);
+app.use("/home/api/withdraws",authMiddleware,withdrawRouter);
 app.use("/home/api", balanceRouter);
 app.use("/auth", authRouter);
 
