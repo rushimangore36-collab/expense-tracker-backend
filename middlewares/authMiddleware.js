@@ -1,16 +1,16 @@
-// middleware/auth.js
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
-  // Routes allowed without token
-  const openRoutes = ["/auth/login", "/auth/signup", "/"];
+  const openRoutes = [
+    "/auth/login",
+    "/auth/signup"
+  ];
 
-  // If the requested path is in openRoutes, allow it
-  if (openRoutes.includes(req.path)) {
+  // Allow login/signup routes
+  if (openRoutes.includes(req.originalUrl)) {
     return next();
   }
 
-  // Otherwise token required
   const header = req.headers.authorization;
   if (!header) {
     return res.status(401).json({ msg: "No token" });
