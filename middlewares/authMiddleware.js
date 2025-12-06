@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
     "/auth/login",
     "/auth/signup"
   ];
-
+  console.log("MIDDLEWARE RUNNING:", req.originalUrl);
   // Allow login/signup routes
   if (openRoutes.includes(req.originalUrl)) {
     return next();
